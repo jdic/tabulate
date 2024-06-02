@@ -17,12 +17,12 @@ const tabulate = (func: TabulateData, start: number, end: number) =>
 
     if(isNaN(y))
     {
-      data.push([x.toString().blue, 'NaN'.blue])
+      data.push([x.toString().blue, 'Ind'.blue])
       const nearbyValues = [-0.1, -0.01, -0.001, 0.001, 0.01, 0.1]
 
       for (let i = 0; i < nearbyValues.length; i++)
       {
-        const nearbyX = x + nearbyValues[i] * (x < 0 && nearbyValues[i] < 0 ? -1 : 1)
+        const nearbyX = x + nearbyValues[i]
         y = func(nearbyX)
 
         data.push([nearbyX.toString().padEnd(2).red, y.toFixed(4)])
@@ -45,12 +45,12 @@ const tabulate = (func: TabulateData, start: number, end: number) =>
 
   data.forEach(([x, y]) =>
   {
-    table.push([x.toString().padEnd(2), y.toString().padEnd(2)])
+    table.push([x.toString().padEnd(2), y.toString().padEnd(2).substring(0, 8)])
   })
 
   console.log(table.toString())
 }
 
-const fx: TabulateData = x => ((x ** 4) - 16) / (x - 2)
+const fx: TabulateData = x => ((x ** 6) - 1) / ((x ** 10) - 1)
 
-tabulate(fx, -3, 3)
+tabulate(fx, -5, 5)
