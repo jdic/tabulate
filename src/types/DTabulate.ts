@@ -1,0 +1,1 @@
+export type TabulateData = (x: number) => number
